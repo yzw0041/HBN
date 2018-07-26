@@ -1,0 +1,21 @@
+Step1:
+
+scp /Volumes/Pegasus_wangyun/ADHD/ITA/MRI/Docker_HPC/poldracklab_fmriprep_latest-*.img  wangyun@theta.alcf.anl.gov:/lus/theta-fs0/projects/Clinical_Connectome/fmriprep_test_7_20
+
+
+Step2:
+
+ rsync -ahze ssh  /Volumes/Gradient/Personal/yun/HBN/MRI/Test  wangyun@theta.alcf.anl.gov:/lus/theta-fs0/projects/Clinical_Connectome/fmriprep_test_7_20
+
+
+Step3: singularity
+
+singularity  run  \
+        poldracklab_fmriprep_latest-2018-04-11-b46f8842831b.img  \
+        Test  \
+         output   \
+         participant    \
+          --participant-label NDARAC349YUC   \
+         --fs-license-file $FS_LICENSE
+#comment: freesurfer licences issue;
+#possble solution: give me full permission to these directory
